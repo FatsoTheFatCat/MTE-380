@@ -7,8 +7,8 @@ const int ESC1_SIGNAL = 22;
 const int  ESC2_SIGNAL = 24;
 const int  ESC3_SIGNAL = 26;
 
-const int  STOP_VAL = 90;
-const int  STOP_VAL_BLACK = 100; // black shaded -> stop value is 100
+const int  STOP_VAL = 90; // stop value is 90, lowest -> 85,95
+const int  STOP_VAL_BLACK = 100; // black shaded -> stop value is 100, lowest -> 97,107
 
 void setup()
 {
@@ -25,18 +25,18 @@ void setup()
 
 void loop()
 {
-  esc1.write(90);
+  esc1.write(107);
   delay(1000);
   esc1.write(STOP_VAL_BLACK);
   delay(2000);
   
-  esc2.write(95);
-  delay(1000);
-  esc2.write(STOP_VAL);
-  delay(2000);
-  
-  esc3.write(95);
-  delay(1000);
-  esc3.write(STOP_VAL);
-  delay(2000);
+//  esc2.write(95);
+//  delay(1000);
+//  esc2.write(STOP_VAL);
+//  delay(2000);
+//  
+//  esc3.write(95);
+//  delay(1000);
+//  esc3.write(STOP_VAL);
+//  delay(2000);
 }
