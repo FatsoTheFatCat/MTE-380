@@ -41,6 +41,54 @@ const int STOP_ELEV = 90;
 const int START_VAL = 95;
 const int REVERSE_VAL = 80;
 
+
+///////////////// Motor Movements /////////////////
+// Forward Motion Control
+void moveForward() {
+  left.write(START_LEFT - 10);
+  right.write(START_RIGHT - 10);
+}
+void stopForward() {
+  left.write(STOP_LEFT);
+  right.write(STOP_RIGHT);
+}
+
+// Elevation Motors Control
+void moveDown() {
+  elev.write(START_ELEV);
+  elev2.write(START_ELEV2);
+}
+void stopDown() {
+  elev.write(STOP_ELEV);
+  elev2.write(STOP_ELEV2);
+}
+
+// Right Motor Control
+void turnRight() {
+  right.write(START_RIGHT);
+}
+void stopRight() {
+  right.write(STOP_RIGHT);
+}
+
+// Left Motor Control
+void turnLeft() {
+  left.write(START_LEFT);
+}
+void stopLeft() {
+  left.write(STOP_LEFT);
+}
+
+// Reverse Motion Control
+void reverse() {
+  left.write(REVERSE_VAL);
+  right.write(REVERSE_VAL);
+}
+void stopReverse() {
+  stopForward();
+}
+
+
 void setup() {
   Serial.begin(9600);
     pinMode(LED_BUILTIN, OUTPUT);
@@ -69,11 +117,9 @@ void loop() {
     
     if ( prev != next) {
       if (next == 1) {
-        left.write(START_LEFT - 10);
-        right.write(START_RIGHT - 10);
+        moveForward();
       } else {
-        left.write(STOP_LEFT);
-        right.write(STOP_RIGHT);
+        stopForward();
       }
     }
     
@@ -82,11 +128,9 @@ void loop() {
     
     if ( prev != next) {
       if (next == 1) {
-        elev.write(START_ELEV);
-        elev2.write(START_ELEV2);
+        moveDown();
       } else {
-        elev.write(STOP_ELEV);
-        elev2.write(STOP_ELEV2);
+        stopDown();
       }
     }
       
@@ -95,9 +139,9 @@ void loop() {
     
     if ( prev != next) {
       if (next == 1) {
-        right.write(START_RIGHT);
+        turnRight();
       } else {
-        right.write(STOP_RIGHT);
+        stopRight();
       }
     }
       
@@ -106,9 +150,9 @@ void loop() {
     
     if ( prev != next) {
       if (next == 1) {
-        left.write(START_LEFT);
+        turnLeft();
       } else {
-        left.write(STOP_LEFT);
+        stopLeft();
       }
     }
       
@@ -117,11 +161,9 @@ void loop() {
     
     if ( prev != next) {
       if (next == 1) {
-        left.write(REVERSE_VAL);
-        right.write(REVERSE_VAL);
+        reverse();
       } else {
-        left.write(STOP_LEFT);
-        right.write(STOP_RIGHT);
+        stopReverse();
       }
     }
 
